@@ -1,4 +1,8 @@
 import * as THREE from "/js/vendor/three.module.min.js";
+import { EffectComposer } from "/js/vendor/three/examples/jsm/postprocessing/EffectComposer.js";
+import { RenderPass } from "/js/vendor/three/examples/jsm/postprocessing/RenderPass.js";
+import { UnrealBloomPass } from "/js/vendor/three/examples/jsm/postprocessing/UnrealBloomPass.js";
+import { OutputPass } from "/js/vendor/three/examples/jsm/postprocessing/OutputPass.js";
 
 const canvas = document.getElementById("bg-canvas");
 if (canvas) {
@@ -72,12 +76,26 @@ if (canvas) {
   const points = new THREE.Points(geometry, material);
   scene.add(points);
 
+  const composer = new EffectComposer(renderer);
+  composer.addPass(new RenderPass(scene, camera));
+
+  const bloomPass = new UnrealBloomPass(
+    new THREE.Vector2(window.innerWidth, window.innerHeight),
+    isCoarsePointer ? 0.35 : 0.5, // strength
+    0.4,  // radius
+    0.25  // threshold
+  );
+  composer.addPass(bloomPass);
+  composer.addPass(new OutputPass());
+
   function resize() {
     const w = window.innerWidth;
     const h = window.innerHeight;
     renderer.setSize(w, h);
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
+    composer.setSize(w, h);
+    bloomPass.setSize(w, h);
   }
   window.addEventListener("resize", resize);
   resize();
@@ -117,7 +135,7 @@ if (canvas) {
     camera.position.z = 9 - scrollFrac * 2.2;
     camera.lookAt(0, 0, 0);
 
-    renderer.render(scene, camera);
+    composer.render();
   }
 
   if (reduceMotion) {

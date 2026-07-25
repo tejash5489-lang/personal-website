@@ -269,7 +269,9 @@ main section {
   align-items: center;
   gap: 20px;
   padding: 26px 12px;
-  background: transparent;
+  background: rgba(6, 6, 6, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: none;
   cursor: pointer;
   text-align: left;
@@ -419,6 +421,13 @@ main section {
   font-size: clamp(22px, 2.8vw, 32px);
   line-height: 1.4;
   margin: 0;
+}
+.about-facts {
+  background: rgba(6, 6, 6, 0.45);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 4px 16px;
+  border-radius: 4px;
 }
 .about-facts div {
   padding: 14px 0;
