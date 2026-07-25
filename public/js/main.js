@@ -27,13 +27,31 @@ document.querySelectorAll(".work-item__row").forEach((btn) => {
 
 // Custom cursor
 const cursor = document.querySelector(".cursor-dot");
+const cursorLabel = cursor && cursor.querySelector(".cursor-dot__label");
 if (cursor && matchMedia("(hover: hover) and (pointer: fine)").matches) {
   window.addEventListener("mousemove", (e) => {
     cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
   });
-  document.querySelectorAll("a, button").forEach((el) => {
+
+  document.querySelectorAll("a, button:not(.work-item__row)").forEach((el) => {
     el.addEventListener("mouseenter", () => cursor.classList.add("is-active"));
     el.addEventListener("mouseleave", () => cursor.classList.remove("is-active"));
+  });
+
+  document.querySelectorAll(".work-item__row").forEach((row) => {
+    const setLabel = () => {
+      if (cursorLabel) {
+        cursorLabel.textContent = row.getAttribute("aria-expanded") === "true" ? "Close" : "View";
+      }
+    };
+    row.addEventListener("mouseenter", () => {
+      setLabel();
+      cursor.classList.add("is-label");
+    });
+    row.addEventListener("click", setLabel);
+    row.addEventListener("mouseleave", () => {
+      cursor.classList.remove("is-label");
+    });
   });
 }
 

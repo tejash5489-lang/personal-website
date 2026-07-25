@@ -47,17 +47,38 @@ ul { margin: 0; padding: 0; list-style: none; }
   pointer-events: none;
   z-index: 999;
   transform: translate(-50%, -50%);
-  transition: width .15s ease, height .15s ease, border-color .15s ease;
+  transition: width .2s cubic-bezier(.2,.8,.2,1), height .2s cubic-bezier(.2,.8,.2,1), background .2s ease, border-color .2s ease;
   display: none;
+  align-items: center;
+  justify-content: center;
 }
 @media (hover: hover) and (pointer: fine) {
-  .cursor-dot { display: block; }
+  .cursor-dot { display: flex; }
 }
 .cursor-dot.is-active {
   width: 34px;
   height: 34px;
   background: transparent;
   border: 1px solid var(--accent);
+}
+.cursor-dot__label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #060606;
+  opacity: 0;
+  transition: opacity .15s ease;
+  white-space: nowrap;
+}
+.cursor-dot.is-label {
+  width: 88px;
+  height: 88px;
+  background: var(--accent);
+  border: none;
+}
+.cursor-dot.is-label .cursor-dot__label {
+  opacity: 1;
 }
 
 /* Corner marks */
