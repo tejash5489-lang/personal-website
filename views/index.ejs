@@ -9,14 +9,17 @@
 
   <main>
     <section class="hero">
-      <p class="hero__eyebrow">/// <%= profile.status %></p>
-      <h1 class="hero__name"><%= profile.name %></h1>
-      <p class="hero__role"><%= profile.role %> — based in <%= profile.location %></p>
-      <p class="hero__meta"><%= profile.education %></p>
+      <canvas id="hero-canvas" aria-hidden="true"></canvas>
+      <div class="hero__content">
+        <p class="hero__eyebrow reveal">SEC—00 <span>/// <%= profile.status %></span></p>
+        <h1 class="hero__name reveal"><%= profile.name %></h1>
+        <p class="hero__role reveal"><%= profile.role %> — based in <%= profile.location %></p>
+        <p class="hero__meta reveal"><%= profile.education %></p>
+      </div>
     </section>
 
     <section id="work" class="work">
-      <h2 class="section-label">Work <span>/ Selected Projects</span></h2>
+      <h2 class="section-label reveal"><span class="section-label__tag">SEC—01</span>Work <span>/ Selected Projects</span></h2>
 
       <div class="work-list">
         <% projects.forEach(function(p, i) { %>
@@ -72,10 +75,10 @@
     </section>
 
     <section id="about" class="about">
-      <h2 class="section-label">Info <span>/ About</span></h2>
+      <h2 class="section-label reveal"><span class="section-label__tag">SEC—02</span>Info <span>/ About</span></h2>
       <div class="about-grid">
-        <p class="about-bio"><%= profile.bio %></p>
-        <dl class="about-facts">
+        <p class="about-bio reveal"><%= profile.bio %></p>
+        <dl class="about-facts reveal">
           <div><dt>Location</dt><dd><%= profile.location %></dd></div>
           <div><dt>Education</dt><dd><%= profile.education %></dd></div>
           <div><dt>Status</dt><dd><%= profile.status %></dd></div>
@@ -85,8 +88,8 @@
     </section>
 
     <section id="backstage" class="backstage">
-      <h2 class="section-label">Backstage <span>/ Notes</span></h2>
-      <p class="backstage__intro"><%= profile.backstageIntro %></p>
+      <h2 class="section-label reveal"><span class="section-label__tag">SEC—03</span>Backstage <span>/ Notes</span></h2>
+      <p class="backstage__intro reveal"><%= profile.backstageIntro %></p>
 
       <% if (notes.length) { %>
       <div class="notes-list">
@@ -106,9 +109,9 @@
     </section>
 
     <section id="contact" class="contact">
-      <h2 class="section-label">Contact <span>/ Get in touch</span></h2>
-      <a class="contact__big" href="mailto:<%= profile.email %>"><%= profile.email %></a>
-      <div class="contact__links">
+      <h2 class="section-label reveal"><span class="section-label__tag">SEC—04</span>Contact <span>/ Get in touch</span></h2>
+      <a class="contact__big reveal" href="mailto:<%= profile.email %>"><%= profile.email %></a>
+      <div class="contact__links reveal">
         <a href="<%= profile.github %>" target="_blank" rel="noopener">GitHub ↗</a>
         <a href="<%= profile.linkedin %>" target="_blank" rel="noopener">LinkedIn ↗</a>
         <% if (hasResume) { %>
