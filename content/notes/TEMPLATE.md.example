@@ -1,0 +1,9 @@
+---
+title: Your note title
+date: 2026-01-01
+excerpt: One or two sentences that show up in the Backstage list.
+---
+
+Write your note body here in Markdown. Rename this file to
+`something-like-this.md` (remove `.example`) and drop it in this folder —
+it will automatically show up on /notes and the homepage Backstage section.

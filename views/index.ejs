@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <%- include('partials/head') %>
+</head>
+<body>
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <%- include('partials/nav') %>
+
+  <main>
+    <section class="hero">
+      <p class="hero__eyebrow">/// <%= profile.status %></p>
+      <h1 class="hero__name"><%= profile.name %></h1>
+      <p class="hero__role"><%= profile.role %> — based in <%= profile.location %></p>
+      <p class="hero__meta"><%= profile.education %></p>
+    </section>
+
+    <section id="work" class="work">
+      <h2 class="section-label">Work <span>/ Selected Projects</span></h2>
+
+      <div class="work-list">
+        <% projects.forEach(function(p, i) { %>
+        <article class="work-item" style="--accent: <%= p.color %>;">
+          <button class="work-item__row" data-target="proj-<%= p.slug %>" aria-expanded="false">
+            <span class="work-item__index"><%= p.index %></span>
+            <span class="work-item__name"><%= p.name %></span>
+            <span class="work-item__summary"><%= p.summary %></span>
+            <span class="work-item__stack">
+              <% p.stack.slice(0,3).forEach(function(s){ %><span><%= s %></span><% }) %>
+            </span>
+            <span class="work-item__plus">+</span>
+          </button>
+
+          <div class="work-item__panel" id="proj-<%= p.slug %>">
+            <div class="work-item__panel-inner">
+              <p class="work-item__tagline"><%= p.tagline %></p>
+
+              <% if (p.images && p.images.length) { %>
+              <div class="work-item__gallery">
+                <% p.images.forEach(function(img){ %>
+                <figure>
+                  <img src="<%= img.src %>" alt="<%= img.caption %>" loading="lazy" />
+                  <figcaption><%= img.caption %></figcaption>
+                </figure>
+                <% }) %>
+              </div>
+              <% } %>
+
+              <p class="work-item__desc"><%= p.description %></p>
+
+              <h4>What it does</h4>
+              <ul>
+                <% p.features.forEach(function(f){ %><li><%= f %></li><% }) %>
+              </ul>
+
+              <h4>Process</h4>
+              <p><%= p.process %></p>
+
+              <h4>Who it's for</h4>
+              <p><%= p.whoFor %></p>
+
+              <div class="work-item__tags">
+                <% p.stack.forEach(function(s){ %><span class="tag"><%= s %></span><% }) %>
+              </div>
+
+              <a class="work-item__repo" href="<%= p.repo %>" target="_blank" rel="noopener">View repository ↗</a>
+            </div>
+          </div>
+        </article>
+        <% }) %>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <h2 class="section-label">Info <span>/ About</span></h2>
+      <div class="about-grid">
+        <p class="about-bio"><%= profile.bio %></p>
+        <dl class="about-facts">
+          <div><dt>Location</dt><dd><%= profile.location %></dd></div>
+          <div><dt>Education</dt><dd><%= profile.education %></dd></div>
+          <div><dt>Status</dt><dd><%= profile.status %></dd></div>
+          <div><dt>Focus</dt><dd>Full-stack web, AI-assisted products</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section id="backstage" class="backstage">
+      <h2 class="section-label">Backstage <span>/ Notes</span></h2>
+      <p class="backstage__intro"><%= profile.backstageIntro %></p>
+
+      <% if (notes.length) { %>
+      <div class="notes-list">
+        <% notes.forEach(function(n){ %>
+        <a class="notes-list__item" href="/notes/<%= n.slug %>">
+          <span class="notes-list__title"><%= n.title %></span>
+          <span class="notes-list__date"><%= n.date %></span>
+        </a>
+        <% }) %>
+      </div>
+      <a class="backstage__all" href="/notes">All notes ↗</a>
+      <% } else { %>
+      <div class="empty-state">
+        <p>The archive is empty — first entry coming soon.</p>
+      </div>
+      <% } %>
+    </section>
+
+    <section id="contact" class="contact">
+      <h2 class="section-label">Contact <span>/ Get in touch</span></h2>
+      <a class="contact__big" href="mailto:<%= profile.email %>"><%= profile.email %></a>
+      <div class="contact__links">
+        <a href="<%= profile.github %>" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="<%= profile.linkedin %>" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <% if (hasResume) { %>
+          <a href="/resume/resume.pdf" target="_blank" rel="noopener">Resume ↗</a>
+        <% } else { %>
+          <span class="contact__disabled" title="Coming soon">Resume (coming soon)</span>
+        <% } %>
+      </div>
+    </section>
+  </main>
+
+  <%- include('partials/footer') %>
+  <script src="/js/main.js"></script>
+</body>
+</html>

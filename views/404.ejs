@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <%- include('partials/head', { title: "404 — " + profile.name }) %>
+</head>
+<body>
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <%- include('partials/nav') %>
+
+  <main class="subpage">
+    <h1 class="subpage__title">404</h1>
+    <p class="subpage__intro">Nothing here. <a href="/">Back home ↗</a></p>
+  </main>
+
+  <%- include('partials/footer') %>
+  <script src="/js/main.js"></script>
+</body>
+</html>

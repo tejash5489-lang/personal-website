@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <%- include('partials/head', { title: "Backstage — " + profile.name }) %>
+</head>
+<body>
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <%- include('partials/nav') %>
+
+  <main class="subpage">
+    <h1 class="subpage__title">Backstage</h1>
+    <p class="subpage__intro"><%= profile.backstageIntro %></p>
+
+    <% if (notes.length) { %>
+    <div class="notes-list notes-list--full">
+      <% notes.forEach(function(n){ %>
+      <a class="notes-list__item" href="/notes/<%= n.slug %>">
+        <span class="notes-list__title"><%= n.title %></span>
+        <span class="notes-list__excerpt"><%= n.excerpt %></span>
+        <span class="notes-list__date"><%= n.date %></span>
+      </a>
+      <% }) %>
+    </div>
+    <% } else { %>
+    <div class="empty-state">
+      <p>The archive is empty — first entry coming soon.</p>
+    </div>
+    <% } %>
+  </main>
+
+  <%- include('partials/footer') %>
+  <script src="/js/main.js"></script>
+</body>
+</html>
