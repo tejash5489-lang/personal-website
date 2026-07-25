@@ -4,12 +4,12 @@
   <%- include('partials/head') %>
 </head>
 <body>
+  <%- include('partials/bg') %>
   <div class="cursor-dot" aria-hidden="true"><span class="cursor-dot__label"></span></div>
   <%- include('partials/nav') %>
 
   <main>
     <section class="hero">
-      <canvas id="hero-canvas" aria-hidden="true"></canvas>
       <div class="hero__content">
         <p class="hero__eyebrow reveal">SEC—00 <span>/// <%= profile.status %></span></p>
         <h1 class="hero__name reveal"><%= profile.name %></h1>
@@ -124,6 +124,7 @@
   </main>
 
   <%- include('partials/footer') %>
+  <script type="module" src="/js/bg-scene.js"></script>
   <script src="/js/main.js"></script>
 </body>
 </html>

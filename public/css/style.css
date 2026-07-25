@@ -149,6 +149,15 @@ ul { margin: 0; padding: 0; list-style: none; }
   color: var(--fg);
 }
 
+#bg-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+}
+
 /* Hero */
 .hero {
   position: relative;
@@ -158,13 +167,6 @@ ul { margin: 0; padding: 0; list-style: none; }
   padding: 14vh 32px 8vh;
   border-bottom: 1px solid var(--line);
   overflow: hidden;
-}
-#hero-canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0.55;
 }
 .hero__content {
   position: relative;

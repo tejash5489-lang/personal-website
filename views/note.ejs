@@ -4,6 +4,7 @@
   <%- include('partials/head', { title: note.title + " — " + profile.name }) %>
 </head>
 <body>
+  <%- include('partials/bg') %>
   <div class="cursor-dot" aria-hidden="true"><span class="cursor-dot__label"></span></div>
   <%- include('partials/nav') %>
 
@@ -15,6 +16,7 @@
   </main>
 
   <%- include('partials/footer') %>
+  <script type="module" src="/js/bg-scene.js"></script>
   <script src="/js/main.js"></script>
 </body>
 </html>
